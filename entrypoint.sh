@@ -4,8 +4,8 @@ set -e
 install_zip_dependencies(){
 	echo "Installing and zipping dependencies..."
 	mkdir python
-	pipenv install --target=python
-	zip -r dependencies.zip ./python
+	pipenv install
+	zip -q -r dependencies.zip ./.venv/lib/python3.9/site-packages/
 }
 
 publish_dependencies_as_layer(){
