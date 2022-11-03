@@ -27,8 +27,6 @@ Stored as secrets or env vars, doesn't matter. But also please don't put your AW
     - Function name - `my-function`  
     - Function ARN - `arn:aws:lambda:us-west-2:123456789012:function:my-function`  
     - Partial ARN - `123456789012:function:my-function`
-- `requirements_txt`
-    The name/path for the `requirements.txt` file. Defaults to `requirements.txt`.
 
 
 ### Example workflow
