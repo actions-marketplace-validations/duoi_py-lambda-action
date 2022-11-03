@@ -4,7 +4,7 @@ set -e
 install_zip_dependencies(){
 	echo "Installing and zipping dependencies..."
 	mkdir python
-	pipenv install
+	pipenv install --target=python
 	zip -r dependencies.zip ./python
 }
 
