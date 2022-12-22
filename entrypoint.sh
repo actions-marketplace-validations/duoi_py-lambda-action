@@ -5,15 +5,16 @@ install_zip_dependencies(){
 	echo "Installing and zipping dependencies..."
 	mkdir python
 	PIPENV_VENV_IN_PROJECT=1 pipenv install
-	mv .venv python
-	zip -q -r dependencies.zip ./python/lib/python3.9/site-packages
+	pushd ./.venv/lib/python3.9/
+	zip -q -r ../../../dependencies.zip .
+	popd
 }
 
 publish_dependencies_as_layer(){
 	echo "Publishing dependencies as a layer..."
 	local result=$(aws lambda publish-layer-version --layer-name "${INPUT_LAMBDA_LAYER_ARN}" --zip-file fileb://dependencies.zip)
 	LAYER_VERSION=$(jq '.Version' <<< "$result")
-	rm -rf python
+	rm -rf venv
 	rm dependencies.zip
 }
 
